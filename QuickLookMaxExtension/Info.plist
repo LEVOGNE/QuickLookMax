@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleDisplayName</key>
+    <string>QuickLookMax</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>XPC!</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+    <key>NSExtension</key>
+    <dict>
+        <key>NSExtensionAttributes</key>
+        <dict>
+            <key>QLSupportedContentTypes</key>
+            <array>
+                <!-- Markdown -->
+                <string>net.daringfireball.markdown</string>
+                <string>public.markdown</string>
+                <!-- Data formats -->
+                <string>public.json</string>
+                <string>public.yaml</string>
+                <!-- Source code -->
+                <string>public.swift-source</string>
+                <string>public.python-script</string>
+                <string>public.shell-script</string>
+                <string>public.c-source</string>
+                <string>public.c-plus-plus-source</string>
+                <string>public.objective-c-source</string>
+                <string>com.sun.java-source</string>
+                <string>public.ruby-script</string>
+                <string>public.perl-script</string>
+                <string>public.php-script</string>
+                <!-- Web -->
+                <string>public.css</string>
+                <string>public.html</string>
+                <string>public.xml</string>
+                <!-- Generic text (catches .env, .toml, .yaml, .log, etc.) -->
+                <string>public.plain-text</string>
+                <string>public.source-code</string>
+            </array>
+        </dict>
+        <key>NSExtensionPointIdentifier</key>
+        <string>com.apple.quicklook.preview</string>
+        <key>NSExtensionPrincipalClass</key>
+        <string>$(PRODUCT_MODULE_NAME).PreviewViewController</string>
+    </dict>
+</dict>
+</plist>
