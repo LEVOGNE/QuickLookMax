@@ -8,28 +8,32 @@ final class PreviewViewController: NSViewController, QLPreviewingController {
 
     // MARK: - View lifecycle
 
-    override func loadView() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         let config = WKWebViewConfiguration()
-        // No JS needed — pure HTML/CSS rendering
         config.defaultWebpagePreferences.allowsContentJavaScript = false
 
-        webView = WKWebView(frame: .zero, configuration: config)
+        webView = WKWebView(frame: view.bounds, configuration: config)
+        webView.autoresizingMask = [.width, .height]
         webView.navigationDelegate = self
-        view = webView
+        view.addSubview(webView)
     }
 
     // MARK: - QLPreviewingController
 
     func preparePreviewOfFile(at url: URL, completionHandler: @escaping (Error?) -> Void) {
+        let html: String
         do {
-            let html = try RendererRegistry.shared.render(url: url)
-            // Use extension bundle as base so relative resource paths resolve correctly
-            let baseURL = Bundle(for: PreviewViewController.self).resourceURL
-            webView.loadHTMLString(html, baseURL: baseURL)
-            completionHandler(nil)
+            html = try RendererRegistry.shared.render(url: url)
         } catch {
-            completionHandler(error)
+            html = HTMLTemplate.wrap(
+                title: url.lastPathComponent,
+                body: "<p style='color:red;padding:24px'>Error loading file: \(HTMLTemplate.escapeHTML(error.localizedDescription))</p>"
+            )
         }
+        webView.loadHTMLString(html, baseURL: nil)
+        completionHandler(nil)
     }
 }
 
