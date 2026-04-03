@@ -52,6 +52,7 @@
 		1640BF49FA80E99BEAC91C45 /* QuickLookMax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickLookMax.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EB29D98C7D8187CE51B1EAD /* HTMLTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLTemplate.swift; sourceTree = "<group>"; };
 		226E1B4121C8001B2214387D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		22D40CC5B5C6C5A1AE6C43CC /* QuickLookMaxExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickLookMaxExtension.entitlements; sourceTree = "<group>"; };
 		3D98E330DAFC667E1734DFEC /* SourceCodeRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceCodeRenderer.swift; sourceTree = "<group>"; };
 		59FA8F3C41BD3DB65550CC24 /* PlainTextRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainTextRenderer.swift; sourceTree = "<group>"; };
 		5CF55E73494DEA2111AE9964 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +61,7 @@
 		7404F558650B81293CFE6C22 /* QuickLookMaxExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QuickLookMaxExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DF04F95FBFC3EE1B2EC892 /* JSONRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONRenderer.swift; sourceTree = "<group>"; };
 		9E5833F09F04DFDBF651FFB1 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		D8A7485F8A60A190984610F8 /* QuickLookMax.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickLookMax.entitlements; sourceTree = "<group>"; };
 		EBC4A06FBDDDDB4197D06A24 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		EF65429E429FF692FD4263D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F25268B9DFED47ACF1023348 /* MarkdownRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownRenderer.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				1EB29D98C7D8187CE51B1EAD /* HTMLTemplate.swift */,
 				EF65429E429FF692FD4263D8 /* Info.plist */,
 				5CF55E73494DEA2111AE9964 /* PreviewViewController.swift */,
+				22D40CC5B5C6C5A1AE6C43CC /* QuickLookMaxExtension.entitlements */,
 				0A632206D4D74596D1A66C52 /* QuickLookRenderer.swift */,
 				6F2432EB018B7A710E06B39C /* RendererRegistry.swift */,
 				487618140366DEB2C01AEEC9 /* Renderers */,
@@ -136,6 +139,7 @@
 				6FDD1CD4EE0B39C54E1B48C8 /* App.swift */,
 				14EE9B558452951AEC03DB4A /* ContentView.swift */,
 				226E1B4121C8001B2214387D /* Info.plist */,
+				D8A7485F8A60A190984610F8 /* QuickLookMax.entitlements */,
 			);
 			path = QuickLookMax;
 			sourceTree = "<group>";
@@ -190,12 +194,12 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					711AF83FDDCF5FE137E15FE6 = {
-						DevelopmentTeam = "";
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = GKTDLS7Q7V;
+						ProvisioningStyle = Manual;
 					};
 					AA754B63D7011BA16B6F2578 = {
-						DevelopmentTeam = "";
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = GKTDLS7Q7V;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -259,6 +263,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = QuickLookMax/QuickLookMax.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = QuickLookMax/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -275,6 +280,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = QuickLookMaxExtension/QuickLookMaxExtension.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = QuickLookMaxExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -292,6 +298,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = QuickLookMaxExtension/QuickLookMaxExtension.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = QuickLookMaxExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -309,6 +316,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = QuickLookMax/QuickLookMax.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = QuickLookMax/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -354,10 +362,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = GKTDLS7Q7V;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -419,10 +427,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = GKTDLS7Q7V;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

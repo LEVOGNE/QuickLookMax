@@ -11,8 +11,8 @@ settings:
   base:
     SWIFT_VERSION: "5.9"
     MACOSX_DEPLOYMENT_TARGET: "13.0"
-    CODE_SIGN_STYLE: Automatic
-    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Manual
+    DEVELOPMENT_TEAM: GKTDLS7Q7V
 
 targets:
 
@@ -26,6 +26,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.quicklookmax.app
         PRODUCT_NAME: QuickLookMax
         INFOPLIST_FILE: QuickLookMax/Info.plist
+        CODE_SIGN_ENTITLEMENTS: QuickLookMax/QuickLookMax.entitlements
     dependencies:
       - target: QuickLookMaxExtension
         embed: true
@@ -42,6 +43,7 @@ targets:
         PRODUCT_NAME: QuickLookMaxExtension
         APPLICATION_EXTENSION_API_ONLY: YES
         INFOPLIST_FILE: QuickLookMaxExtension/Info.plist
+        CODE_SIGN_ENTITLEMENTS: QuickLookMaxExtension/QuickLookMaxExtension.entitlements
     dependencies:
       - sdk: Quartz.framework
       - sdk: WebKit.framework

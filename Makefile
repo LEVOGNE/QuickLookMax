@@ -4,10 +4,13 @@ APP       = QuickLookMax
 SCHEME    = QuickLookMax
 PROJECT   = QuickLookMax.xcodeproj
 BUILD_DIR = .build
-INSTALL   = $(HOME)/Applications
+INSTALL   = /Applications
+TEAM_ID   = GKTDLS7Q7V
+SIGN_ID   = Apple Development: Levent Ersen (WFQ78JBU4T)
+APPEX     = $(INSTALL)/$(APP).app/Contents/PlugIns/QuickLookMaxExtension.appex
 
 # ──────────────────────────────────────────────
-# Build (Debug, no Apple Developer account needed)
+# Build + sign with Developer ID certificate
 # ──────────────────────────────────────────────
 build:
 	xcodebuild \
@@ -15,26 +18,28 @@ build:
 		-scheme $(SCHEME) \
 		-configuration Debug \
 		-derivedDataPath $(BUILD_DIR) \
-		CODE_SIGN_IDENTITY="-" \
-		CODE_SIGNING_REQUIRED=NO \
-		CODE_SIGNING_ALLOWED=NO \
+		CODE_SIGN_STYLE=Manual \
+		CODE_SIGN_IDENTITY="$(SIGN_ID)" \
+		DEVELOPMENT_TEAM=$(TEAM_ID) \
+		CODE_SIGNING_REQUIRED=YES \
 		2>&1 | grep -E "^(error:|warning:|Build succeeded|FAILED|CompileSwift|Ld )" || true
 
 # ──────────────────────────────────────────────
-# Install to ~/Applications + register extension
+# Install to /Applications + register extension
 # ──────────────────────────────────────────────
 install: build
-	mkdir -p $(INSTALL)
 	rm -rf $(INSTALL)/$(APP).app
 	cp -R $(BUILD_DIR)/Build/Products/Debug/$(APP).app $(INSTALL)/$(APP).app
+	@echo "📦  Registering extension..."
+	pluginkit -r $(BUILD_DIR)/Build/Products/Debug/$(APP).app/Contents/PlugIns/QuickLookMaxExtension.appex 2>/dev/null || true
+	pluginkit -a $(APPEX)
 	@echo "✅  Installed to $(INSTALL)/$(APP).app"
-	@echo "➡️  Opening app to register the Quick Look extension..."
 	open $(INSTALL)/$(APP).app
-	sleep 1
+	sleep 2
 	$(MAKE) reset
 
 # ──────────────────────────────────────────────
-# Reset Quick Look cache (after install or code change)
+# Reset Quick Look cache
 # ──────────────────────────────────────────────
 reset:
 	qlmanage -r
@@ -42,8 +47,7 @@ reset:
 	@echo "✅  Quick Look cache reset"
 
 # ──────────────────────────────────────────────
-# Test: preview a file directly in terminal
-# Usage: make test FILE=~/Desktop/README.md
+# Test a specific file: make test FILE=~/path/to/file.md
 # ──────────────────────────────────────────────
 test:
 	qlmanage -p $(FILE)
