@@ -39,6 +39,12 @@ QuickLookMax is a native macOS Quick Look extension. Press **Space** on any supp
 
 ---
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for the full history.
+
+---
+
 ## License
 
 MIT — free and open source.
