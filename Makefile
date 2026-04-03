@@ -30,8 +30,9 @@ build:
 install: build
 	rm -rf $(INSTALL)/$(APP).app
 	cp -R $(BUILD_DIR)/Build/Products/Debug/$(APP).app $(INSTALL)/$(APP).app
-	@echo "📦  Registering extension..."
+	@echo "📦  Registering extension (cleaning old entries first)..."
 	pluginkit -r $(BUILD_DIR)/Build/Products/Debug/$(APP).app/Contents/PlugIns/QuickLookMaxExtension.appex 2>/dev/null || true
+	pluginkit -r $(BUILD_DIR)/Build/Products/Debug/QuickLookMaxExtension.appex 2>/dev/null || true
 	pluginkit -a $(APPEX)
 	@echo "✅  Installed to $(INSTALL)/$(APP).app"
 	open $(INSTALL)/$(APP).app
