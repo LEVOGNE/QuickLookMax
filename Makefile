@@ -10,7 +10,6 @@ INSTALL   = $(HOME)/Applications
 # Build (Debug, no Apple Developer account needed)
 # ──────────────────────────────────────────────
 build:
-	@which xcpretty > /dev/null 2>&1 || gem install xcpretty --silent
 	xcodebuild \
 		-project $(PROJECT) \
 		-scheme $(SCHEME) \
@@ -19,7 +18,7 @@ build:
 		CODE_SIGN_IDENTITY="-" \
 		CODE_SIGNING_REQUIRED=NO \
 		CODE_SIGNING_ALLOWED=NO \
-		| xcpretty 2>/dev/null || true
+		2>&1 | grep -E "^(error:|warning:|Build succeeded|FAILED|CompileSwift|Ld )" || true
 
 # ──────────────────────────────────────────────
 # Install to ~/Applications + register extension
